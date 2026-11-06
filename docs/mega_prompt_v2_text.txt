@@ -1,0 +1,65 @@
+Ammamma Care v2: Mega Prompt and Final Plan
+Code for a Billion 2026, Health track. Pilot partner: old age home near Miyapur (about 40 residents). Builder: Vasavi Annapureddy. Version 2, written 3 November 2026. This replaces version 1.
+1. What changed from version 1, and my mistakes
+Version 1 had real mistakes. Here they are, honestly, with the fix.
+2. The root problem (brainstorming result)
+What residents say: "The government never gives us money. We cannot go to offices."
+What they feel: Hopeless, ignored, afraid of being cheated or asked for bribes.
+The real root: Nobody carries each resident's case from start to finish with proof. Applications have no reference number, nobody follows up, nobody escalates when an office goes silent, and missing documents block everything quietly.
+Locked root problem: Elderly residents who are entitled to money and care lose it because no one owns their case end to end, keeps proof, and pushes it up the free escalation channels that already exist.
+The important discovery: the system already has free doors that reach a real officer. Most people just do not use them, or give up after one try.
+3. The doorstep path (checked facts)
+
+The honest truth: nobody can guarantee the money. But this path removes almost every office visit, keeps proof at every step, and uses channels that make an officer answer in writing. That is the best real chance.
+Other help in the same tool
+LVPEI@Home eye care at home (call 080 6620 2020). Confirmed exists; visit fee and area to ask.
+Jan Aushadhi generic medicines; find stores with the Janaushadhi Sugam app. Doctor must confirm any switch.
+Rashtriya Vayoshri free spectacles, walkers, hearing aids for 60+ with income up to Rs 15,000 a month. Needs income certificate and doctor certificate (the chairman's doctor friends can help).
+Ayushman Vay Vandana (70+): Telangana rollout unclear, so the tool marks it "check locally", not "eligible".
+What will NOT happen (be honest with residents)
+Guaranteed pension money. We can only push and prove.
+Pension money inside 10 days. Hackathon proof will be applications, acknowledgement numbers, grievance IDs and accounts opened, not money yet.
+Government officers bringing pensions home without any account or application.
+Printing at the home.
+4. What we are building
+An AI case manager for caretakers. Residents never use it. Two staff members do.
+Resident profile: name, age, gender, language, documents as yes or no (Aadhaar, bank or post account, ration card, income certificate, age proof), current pension yes or no, health needs. Never store Aadhaar or bank numbers.
+Eligibility engine: rules check each resident against every scheme by age, income, land and documents, and rank them: surest money first, fewest steps first.
+Document gap planner: shows exactly which document blocks each scheme and the doorstep way to fix it (for example, no bank account means book IPPB).
+AI caseworker agent: reads a caretaker note in Telugu or English, updates the profile, drafts the Form 1 cover letter, the Prajavani petition and the Elderline call script, and schedules follow-ups. It uses only the checked scheme list and never gives medical or legal advice.
+Evidence timeline: every step saved with date, office, acknowledgement or grievance number, and the officer's reply. This is the proof that you never got an answer, and it powers escalation.
+Escalation ladder: if no reply in a set number of days, the agent suggests the next free channel (ward office, then mandal Prajavani, then Elderline 14567, then district Collector) and drafts the message.
+Share card: big-letter Telugu and English card on screen and as an image for WhatsApp.
+Impact dashboard: residents screened, eligible, documents fixed, accounts opened, applications filed with numbers, escalations raised, replies received, money started, eye checks, medicine savings.
+Later list (not now): pickles and sweets ledger, second home, voice calls.
+5. Data: why we still need the chairman's information
+Public demo and GitHub repo: made-up sample residents only. Anyone can see it.
+Private pilot: real residents, with each person's consent, in a separate private database behind a staff login. Only Vasavi and two staff can see it. Never on GitHub.
+What judges see: only totals, like "31 of 40 residents eligible for Aasara; 9 applications filed with acknowledgement numbers". No names.
+So yes, the chairman's real information is needed. It runs the private pilot, and its totals are your proven impact.
+6. Tech plan (frontend, backend, database: always awake)
+
+Note: Vercel's free Hobby plan is for personal, non-commercial use. A free volunteer tool fits, but read their terms.
+Main files (explain each before creating)
+7. Questions for the chairman (36 questions, 7 sections)
+A. The home (4 questions)
+B. Each resident, basics (5 questions)
+C. Documents, yes or no only (7 questions)
+D. Money and pensions (6 questions)
+E. Health (6 questions)
+F. Consent and contacts (4 questions)
+G. Wellbeing (4 questions)
+8. How to win (what the judges score)
+This is the first Code for a Billion. In Karl Mehta's 2016 Code for India hackathon at Rashtrapati Bhavan, the apps that drew praise solved everyday public problems that officials could put to use; an NDMC chairman discussed deploying them (The Hans India, Mar 2016). Lesson: real deployment with a real partner beats a fancy demo. Proven impact is also the tie-breaker this year.
+9. Day-by-day (3 to 13 November)
+10. Mega prompt for AgentFoundry (paste as first message)
+Help me build Ammamma Care, an AI case manager for caretakers at an old age home in Hyderabad, for the Code for a Billion hackathon (Health). Residents never use it; two staff do on their phones. Stack: Next.js with Tailwind (frontend) and API routes (backend) on Vercel, Neon Postgres with Prisma, simple staff login, a free-tier LLM with tool calling plus a rules fallback. Features: (1) resident profiles with documents as yes or no only, never Aadhaar or bank numbers; (2) a rules-based eligibility engine by age, income, land and documents for Telangana Aasara or Cheyutha old age pension, Rashtriya Vayoshri, Jan Aushadhi, LVPEI@Home, IPPB doorstep accounts, and Ayushman Vay Vandana marked "check locally", ranked by surest money and fewest steps, using only lib/schemes.json; (3) a document gap planner with doorstep fixes; (4) an AI caseworker that reads Telugu or English caretaker notes, updates profiles, drafts Form 1 cover letters, Prajavani petitions and Elderline 14567 call scripts, and schedules follow-ups, never giving medical or legal advice; (5) an evidence timeline saving date, office, acknowledgement or grievance number and reply; (6) an escalation ladder that suggests the next free channel after set days; (7) a big-letter Telugu and English share card for WhatsApp; (8) an impact dashboard with totals only. Two deployments: public demo with fake data, private pilot with login. Do not create any files yet. First explain the folder structure and every file in simple English, then wait for my approval before each file.
+11. Sources
+Aasara/Cheyutha rules: pensionbazaar.com (2026, secondary; confirm locally)
+Prajavani mandal level: siasat.com, 5 Aug 2026. Senior WhatsApp 7416687878: deccanchronicle.com, 27 Jul 2025
+Elderline 14567: PIB release, Sept 2021 (PRID 1758880)
+IPPB doorstep: ippbonline.bank.in/web/ippb/doorstep-banking
+Neon vs Supabase: neon.com guide; supabase.com docs on free project pausing
+Serilingampally mandal in Rangareddy district: villageinfo.in (confirm the home's address)
+Code for India 2016 hackathon: thehansindia.com, 25 Mar 2016
+This is AI-assisted analysis. Confirm rules, windows and contacts on calls and official pages before promising anything to residents.

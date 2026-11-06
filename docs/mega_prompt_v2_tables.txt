@@ -1,0 +1,107 @@
+=== TABLE 0
+Mistake in version 1 | Why it was wrong | Fix in version 2
+Dropped pensions because residents cannot go to offices | Pension money is your main goal. "Cannot go" is the problem to solve, not a reason to stop | Pensions are now the centre: a doorstep path plus an evidence and escalation trail
+Assumed the home can print cards | The home has no printer | Cards show on screen and go as an image to staff WhatsApp. You print at a xerox shop once a week if needed
+Tech plan said Streamlit or Gradio on Hugging Face | Free versions go to sleep, and there was no clear frontend, backend or database | Next.js frontend and backend on Vercel, Neon Postgres database that wakes in milliseconds, login for staff
+Said "public repo uses fake data" without explaining the real pilot | It sounded like real data was not needed, so why ask the chairman questions? | Two copies: public demo with fake data, private pilot with real data behind a login. Judges see only totals
+Help list was not age-based | Schemes depend on age (57+, 60+, 70+) and on income, land and documents | Eligibility engine by age, income and documents, ranked by surest and easiest
+Said prizes were per track (earlier) | Your email says 1st Rs 10 lakh, 2nd Rs 5 lakh, 3rd Rs 2.5 lakh overall | Corrected
+Suggested LVPEI "group visit" | LVPEI@Home exists, but group visits are not confirmed | Ask on the call; do not promise
+=== TABLE 1
+Step | What it is | Fact check
+1. Bank account at the home | India Post Payments Bank postman opens an account at the doorstep, free. Call 155299, 2 to 10 days ahead | Confirmed, IPPB official page. Documents needed not listed: ask
+2. Pension check | Telangana Aasara / Cheyutha old age pension: Rs 2,016 a month, age 57+, household income up to Rs 1.5 lakh rural or Rs 2 lakh urban, one pension per family | Mostly true. From PensionBazaar (secondary). Rs 4,000 promised but not paid yet. New application window looked phased: confirm locally
+3. Apply | Form 1 from GHMC ward office or MPDO, submit with documents at a Praja Palana centre or ward office. Keep the stamped acknowledgement number | Same source. Whether a representative can submit for a resident: unverified, ask the ward office
+4. Officer comes to the home | Village Revenue Officer or ward staff verify door to door | Same source
+5. Track status online | aasara.telangana.gov.in or cheyutha.telangana.gov.in by application ID or Aadhaar | Same source. Check the portals work
+6. Escalate if stuck (free) | Prajavani: grievance gets a portal ID and an Action Taken Report. Mandal-level Prajavani every Monday 10 AM to 1 PM at the Mandal Parishad office (since Aug 2026). Hyderabad Collectorate WhatsApp for seniors: 7416687878 | Confirmed (Siasat Aug 2026; Deccan Chronicle Jul 2025). Miyapur is most likely Serilingampally mandal, Rangareddy district, so the Hyderabad WhatsApp may not apply: confirm the home's district
+7. Ask for help (free) | Elderline 14567: national senior citizens helpline, Ministry of Social Justice with Tata Trusts. Gives pension and legal guidance and can intervene. Started from a Hyderabad pilot with Telangana | Confirmed (PIB, Sept 2021). Current Telangana hours and coverage: call and check
+8. Money arrives at the home | IPPB postman does Aadhaar-based cash withdrawal at the doorstep | Confirmed, IPPB official page
+=== TABLE 2
+Part | Choice | Why
+Frontend | Next.js (React) with Tailwind, mobile-first, Telugu and English | You already built a React demo. Works on any phone browser
+Backend | Next.js API routes (serverless) on Vercel | No server that sleeps. Functions start in about a second when called. AgentFoundry has one-click deploy to Vercel
+Database | Neon Postgres (free) | Neon says compute pauses after 5 minutes idle but wakes in a few hundred milliseconds and never pauses the project. Supabase free pauses after 7 days of low activity and needs a manual resume, so avoid it
+Login | Simple staff login (for example NextAuth with email or a passcode per home) | Keeps real resident data private
+AI | A free-tier LLM API with tool calling, plus a rules fallback | Check current free limits first. If AI fails, rules still work
+Two deployments | demo (fake data, public link) and pilot (real data, login) | Judges get a live link; residents stay private
+=== TABLE 3
+File or folder | What it does
+app/ (pages) | Screens: login, residents list, resident profile, case timeline, dashboard
+app/api/residents | Backend: save and load residents
+app/api/agent | Backend: the AI caseworker that reads notes and drafts letters
+lib/eligibility.ts | Rules for every scheme by age, income, land, documents
+lib/schemes.json | Checked scheme list with source and last-checked date
+lib/escalation.ts | The escalation ladder and waiting days
+lib/db.ts | Connection to Neon Postgres
+prisma/schema.prisma | Database tables: residents, cases, events, tasks
+seed/sample.json | Fake residents for the public demo
+README.md, DECISIONS.md | How to run; why every choice was made
+=== TABLE 4
+Question | Information it gives
+How many residents now, how many women and men? | Size of the pilot
+What is the exact address, ward or mandal, and district? | Which ward office, Prajavani and Collector apply
+Is the home registered (society or trust)? Since when? | Grant and partner eligibility
+Who are the two staff who can use a phone app? | Your operators
+=== TABLE 5
+Question | Information it gives
+Name and age (or year of birth) | Age rules: 57+, 60+, 70+, 80+
+Gender, widowed or not | Some schemes and priorities depend on it
+Language they speak | Card language
+Phone: none, keypad or smartphone? Family contact? | How updates reach them
+Can they sign or give thumb impression? Can they travel at all? | Who can submit forms; doorstep needs
+=== TABLE 6
+Question | Information it gives
+Aadhaar card? | Base for almost every scheme
+Aadhaar linked to a working mobile number? | OTP for online steps
+Bank or post office account? | Pension needs it; if no, book IPPB
+Ration card (white or other)? | Income proof for Aasara
+Income certificate? | Needed for Vayoshri
+Age proof (voter ID, school certificate)? | Aasara needs it
+Voter ID or residence proof at this address? | Which office handles them
+=== TABLE 7
+Question | Information it gives
+Does the resident get any pension now? Which one, how much? | Who is already covered
+Did they get one before that stopped? When and why? | Suspended cases are often quickest to restart
+Did anyone apply and get no answer? Any receipt or number? | Start of the evidence trail
+Any family income, land or vehicle in the family name? | Eligibility rules
+Does any family member already get a pension? | One pension per family rule
+Do you know anyone in the ward office, MPDO, MRO or Collectorate? | A human contact to speed things
+=== TABLE 8
+Question | Information it gives
+Main health problem | Which health help fits
+Regular medicines and monthly cost | Jan Aushadhi savings
+Eye problems, cataract, need glasses? | LVPEI@Home, Sarojini Devi, Vayoshri
+Need walker, stick or hearing aid? | Vayoshri
+Any health card (Aarogyasri or other)? | Already covered or not
+When do the doctor friends visit next? | Prescriptions and certificates in one visit
+=== TABLE 9
+Question | Information it gives
+Can I talk to each resident to ask their permission? | Consent, the first rule
+Can a staff member come with residents if an office visit is unavoidable? | Backup plan
+Can I list the home as my pilot partner? Please confirm by WhatsApp | Hackathon proof
+Who should I update every week? | Your reporting contact
+=== TABLE 10
+Question | Information it gives
+What makes residents happiest? | Human side of the story
+Who feels most lonely? | Who needs more visits
+Who would like small work like pickles or sweets? | Later list
+If one problem disappeared tomorrow, which one? | The chairman's top priority
+=== TABLE 11
+Criterion (25% each) | Our proof by 13 November
+Size | 149 million Indians aged 60+, only 22.6% get an old age pension (India Ageing Report 2023, LASI)
+Severity | Over half of elderly face catastrophic health spending; cataract causes 66% of blindness at 50+
+Quality | Built for residents with no phones or printers; doorstep path; evidence and escalation trail; private data
+Proven impact | Residents screened, eligibility found, IPPB accounts booked, Form 1 applications with acknowledgement numbers, Prajavani or Elderline tickets with IDs, eye checks, medicine savings
+=== TABLE 12
+Date | Task
+Tue 3 | Chairman call (section 7). Call IPPB 155299, Elderline 14567, LVPEI. Ask home's district and ward
+Wed 4 | Register project on GitHub. In AgentFoundry: Next.js project, schema, sample data. Explain files first
+Thu 5 | Eligibility engine and scheme list. Neon database
+Fri 6 | Screens: residents, profile, dashboard. Deploy demo on Vercel
+Sat 7 | At home: consent, profiles for 15 to 20 residents, book IPPB visit
+Sun 8 | Profiles for the rest. Collect Form 1. Jan Aushadhi price check
+Mon 9 | Mandal Prajavani (Monday 10 to 1) for any stuck case, if the chairman agrees. AI caseworker agent
+Tue 10 to Wed 11 | Evidence timeline, escalation ladder, share card. Private pilot deploy with login
+Thu 12 | Demo video, README, impact numbers
+Fri 13 | Submit. 14 and 15 are buffer
